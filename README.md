@@ -1,20 +1,20 @@
-# e-Learning Management System
+# Hệ thống Quản lý Học tập
 
-## Run Locally
+## Chạy cục bộ
 
-1. Clone the project
+1. Sao chép dự án
 
 ```bash
 git clone https://github.com/nz-m/eLMS-SWE.git
 ```
 
-2. Go to the project directory
+2. Đi đến thư mục dự án
 
 ```bash
 cd eLMS-SWE
 ```
 
-3. Create a virtual environment and activate it (Windows)
+3. Tạo môi trường ảo và kích hoạt nó (Windows)
 
 ```bash
 python -m venv env
@@ -24,19 +24,19 @@ python -m venv env
 env\Scripts\activate
 ```
 
-4. Install dependencies
+4. Cài đặt các phụ thuộc
 
 ```bash
 pip install -r requirements.txt
 ```
 
-> **Note:** If you're using newer versions of python(3.10+), you may need to add the `--use-deprecated=legacy-resolver` option when installing dependencies with `pip` to avoid errors :
+> **Lưu ý:** Nếu bạn đang sử dụng các phiên bản python mới hơn (3.10+), bạn có thể cần thêm tùy chọn `--use-deprecated=legacy-resolver` khi cài đặt các phụ thuộc với `pip` để tránh lỗi:
 
 ```bash
 pip install -r requirements.txt --use-deprecated=legacy-resolver
 ```
 
-5. Make migrations and migrate
+5. Tạo các di chuyển và di chuyển
 
 ```bash
 python manage.py makemigrations
@@ -46,18 +46,18 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-6. Create admin/superuser
+6. Tạo admin/superuser
 
 ```bash
 python manage.py createsuperuser
 ```
 
-7. Finally run the project
+7. Cuối cùng chạy dự án
 
 ```bash
 python manage.py runserver
 ```
 
-Now the project should be running on http://127.0.0.1:8000/
+Bây giờ dự án sẽ chạy trên http://127.0.0.1:8000/
 
-Login as admin and add some courses, teacher and students.
+Đăng nhập với tư cách quản trị viên và thêm một số khóa học, giáo viên và sinh viên.
