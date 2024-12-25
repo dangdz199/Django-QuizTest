@@ -32,32 +32,13 @@
       <div class="rounded p-3 m-3 shadow d-flex justify-content-between">
          <span></span>
          <h5 class="mt-2 fw-bold">{{course.department}}-{{course.code}} : {{course.name}}</h5>
-         <div class="dropdown">
-            <img class="dropdown-toggle" id="drop" data-bs-toggle="dropdown" aria-expanded="false" src="{% static 'images/icon/dropDown.png' %}"
-               alt="Options" height="32">
-            <ul class="dropdown-menu">
-               <li class="border-bottom">
-                  <a class="dropdown-item" href="{% url 'discussion' course.code %}">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-dots mx-2" viewBox="0 0 16 16">
-                        <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
-                        <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                     </svg>
-                     Thảo luận
-                  </a>
-               </li>
-               <li>
-                  <a class="dropdown-item" href="{% url 'myQuizzes' course.code %}">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-text mx-2" viewBox="0 0 16 16">
-                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A.5.5 0 0 0 14.5 2h-13z"/>
-                        <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
-                     </svg>
-                     Bài kiểm tra
-                  </a>
-               </li>
-            </ul>
+         <div>
+            <a class="btn btn-primary" href="{% url 'discussion' course.code %}">Thảo luận</a>
+            <a class="btn btn-primary" href="{% url 'myQuizzes' course.code %}">Bài kiểm tra</a>
          </div>
       </div>
       <!-- course name ends -->
+      <!-- discussion section starts -->
       <!-- announcement section starts -->
       <div class="rounded p-3 m-3 shadow border border-top-0 border-end-0 border-bottom-0 border-primary border-5">
          <div class="fw-bold animate__animated animate__zoomInDown fs-5 text-center border-bottom border-1 mb-2 py-2" style="color: rgb(10, 10, 48);"><img src="{% static 'images/icon/megaphone.png' %}"

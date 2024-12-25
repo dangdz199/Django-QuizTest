@@ -168,10 +168,8 @@ def quizResult(request, code, quiz_id):
         quiz = Quiz.objects.get(id=quiz_id)
         questions = Question.objects.filter(quiz=quiz)
         try:
-            student = Student.objects.get(
-                student_id=request.session['student_id'])
-            student_answers = StudentAnswer.objects.filter(
-                student=student, quiz=quiz)
+            student = Student.objects.get(student_id=request.session['student_id'])
+            student_answers = StudentAnswer.objects.filter(student=student, quiz=quiz)
             total_marks_obtained = 0
             for student_answer in student_answers:
                 total_marks_obtained += student_answer.question.marks if student_answer.answer == student_answer.question.answer else 0
@@ -181,28 +179,27 @@ def quizResult(request, code, quiz_id):
                 quiz.total_marks += question.marks
             quiz.percentage = (total_marks_obtained / quiz.total_marks) * 100
             quiz.percentage = round(quiz.percentage, 2)
-        except:
+        except Student.DoesNotExist:
             quiz.total_marks_obtained = 0
             quiz.total_marks = 0
             quiz.percentage = 0
 
         for question in questions:
-            student_answer = StudentAnswer.objects.get(
-                student=student, question=question)
-            question.student_answer = student_answer.answer
+            try:
+                student_answer = StudentAnswer.objects.get(student=student, question=question)
+                question.student_answer = student_answer.answer
+            except StudentAnswer.DoesNotExist:
+                question.student_answer = None
 
-        student_answers = StudentAnswer.objects.filter(
-            student=student, quiz=quiz)
+        student_answers = StudentAnswer.objects.filter(student=student, quiz=quiz)
         for student_answer in student_answers:
             quiz.time_taken = student_answer.created_at - quiz.start
             quiz.time_taken = quiz.time_taken.total_seconds()
             quiz.time_taken = round(quiz.time_taken, 2)
-            quiz.submission_time = student_answer.created_at.strftime(
-                "%a, %d-%b-%y at %I:%M %p")
+            quiz.submission_time = student_answer.created_at.strftime("%a, %d-%b-%y at %I:%M %p")
         return render(request, 'quiz/quizResult.html', {'course': course, 'quiz': quiz, 'questions': questions, 'student': student})
     else:
         return redirect('std_login')
-
 
 def quizSummary(request, code, quiz_id):
     if is_faculty_authorised(request, code):
