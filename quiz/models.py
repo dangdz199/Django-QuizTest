@@ -94,3 +94,5 @@ class StudentAnswer(models.Model):
 
     class Meta:
         unique_together = ('student', 'quiz', 'question')
+
+

@@ -137,12 +137,13 @@ PASSWORD_HASHERS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'vi'  # Ngôn ngữ Việt Nam
 
-TIME_ZONE = 'Asia/Dhaka'
+TIME_ZONE = 'Asia/Ho_Chi_Minh'  # Múi giờ Việt Nam
 
 USE_I18N = True
-USE_TZ = False
+USE_TZ = True  # Bật tính năng sử dụng múi giờ (nên bật khi làm việc với múi giờ)
+
 
 
 # Static files (CSS, JavaScript, Images)
