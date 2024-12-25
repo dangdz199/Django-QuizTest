@@ -14,8 +14,10 @@ from django import forms
 
 
 class LoginForm(forms.Form):
-    id = forms.CharField(label='ID', max_length=10, validators=[
-                         validators.RegexValidator(r'^\d+$', 'Please enter a valid number.')])
+    # id = forms.CharField(label='ID', max_length=10, validators=[
+    #                      validators.RegexValidator(r'^\d+$', 'Please enter a valid number.')])
+    # password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.EmailField(label='Email', max_length=100)
     password = forms.CharField(widget=forms.PasswordInput)
 
 
@@ -35,6 +37,37 @@ def is_faculty_authorised(request, code):
 
 
 # Custom Login page for both student and faculty
+# def std_login(request):
+#     error_messages = []
+
+#     if request.method == 'POST':
+#         form = LoginForm(request.POST)
+
+#         if form.is_valid():
+#             id = form.cleaned_data['id']
+#             password = form.cleaned_data['password']
+
+#             if Student.objects.filter(student_id=id, password=password).exists():
+#                 request.session['student_id'] = id
+#                 return redirect('myCourses')
+#             elif Faculty.objects.filter(faculty_id=id, password=password).exists():
+#                 request.session['faculty_id'] = id
+#                 return redirect('facultyCourses')
+#             else:
+#                 error_messages.append('Invalid login credentials.')
+#         else:
+#             error_messages.append('Invalid form data.')
+#     else:
+#         form = LoginForm()
+
+#     if 'student_id' in request.session:
+#         return redirect('/my/')
+#     elif 'faculty_id' in request.session:
+#         return redirect('/facultyCourses/')
+
+#     context = {'form': form, 'error_messages': error_messages}
+#     return render(request, 'login_page.html', context)
+    
 def std_login(request):
     error_messages = []
 
@@ -42,14 +75,16 @@ def std_login(request):
         form = LoginForm(request.POST)
 
         if form.is_valid():
-            id = form.cleaned_data['id']
+            email = form.cleaned_data['email']
             password = form.cleaned_data['password']
 
-            if Student.objects.filter(student_id=id, password=password).exists():
-                request.session['student_id'] = id
+            if Student.objects.filter(email=email, password=password).exists():
+                student = Student.objects.get(email=email)
+                request.session['student_id'] = student.student_id
                 return redirect('myCourses')
-            elif Faculty.objects.filter(faculty_id=id, password=password).exists():
-                request.session['faculty_id'] = id
+            elif Faculty.objects.filter(email=email, password=password).exists():
+                faculty = Faculty.objects.get(email=email)
+                request.session['faculty_id'] = faculty.faculty_id
                 return redirect('facultyCourses')
             else:
                 error_messages.append('Invalid login credentials.')
@@ -733,3 +768,6 @@ def guestFaculty(request):
         return redirect('facultyCourses')
     except:
         return redirect('std_login')
+
+def public_page(request):
+    return render(request, 'public_page.html')

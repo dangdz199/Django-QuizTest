@@ -24,21 +24,21 @@
                      <figure><img src="{% static 'images/login-bg.jpg' %}" alt="hình ảnh đăng nhập"></figure>
                   </div>
                   <div class="signin-form">
-                     <h2 class="form-title">Đăng nhập vào eLMS</h2>
+                     <h2 class="form-title">Đăng nhập</h2>
                      <form method="POST" class="register-form" id="login-form">
-                           {% csrf_token %}
-                           <div class="form-group">
-                              <label for="{{ form.id.id_for_label }}"><span class="material-symbols-outlined" style="vertical-align:text-bottom">person</span></label>
-                              {{ form.id }}
-                           </div>
-                           <div class="form-group">
-                              <label for="{{ form.password.id_for_label }}"><span class="material-symbols-outlined" style="vertical-align:text-bottom">lock</span></label>
-                              {{ form.password }}
-                           </div>
-                           <div class="d-grid">
-                              <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Đăng nhập</button>
-                           </div>
-                     </form>
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{ form.email.id_for_label }}"><span class="material-symbols-outlined" style="vertical-align:text-bottom">email</span></label>
+                            {{ form.email }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.password.id_for_label }}"><span class="material-symbols-outlined" style="vertical-align:text-bottom">lock</span></label>
+                            {{ form.password }}
+                        </div>
+                        <div class="d-grid">
+                            <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Đăng nhập</button>
+                        </div>
+                    </form>
                      <div class="d-flex justify-content-around flex-wrap">
                         <div class="">
                            <div class="dropdown">

@@ -52,3 +52,6 @@ class MaterialForm(forms.ModelForm):
             'description': FroalaEditor(),
             'file': forms.FileInput(attrs={'class': 'form-control', 'id': 'file', 'name': 'file', 'aria-describedby': 'file', 'aria-label': 'Upload'}),
         }
+
+class StudentNameForm(forms.Form):
+    name = forms.CharField(label='Your name', max_length=100)
